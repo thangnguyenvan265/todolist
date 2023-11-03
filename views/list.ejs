@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>TO DO LIST</title>
+    <link rel="stylesheet" href="css/styles.css">
   </head>
   <body>
 
@@ -17,7 +18,7 @@
 
       <ul>
         <% for (var i = 0; i< itemtodo.length; i++) { %>
-          <li><%= itemtodo[itemtodo.length-1] %></li>
+          <li><%= itemtodo[i] %></li>
         <% } %>
 
       </ul>
