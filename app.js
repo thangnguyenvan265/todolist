@@ -5,6 +5,8 @@ const request = require("request");
 const bodyParser = require("body-parser");
 const https = require("https");
 
+var Items = [];
+
 app.use(express.static("public"));
 
 app.use(bodyParser.urlencoded({extended:true}));
@@ -14,37 +16,25 @@ app.set('view engine', 'ejs');
 app.get("/", function(req, res){
   var today = new Date();
 
-  currentday = today.getDay();
+  var options = {
+  weekday: 'long',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  };
 
-  var kindOday = "";
+  var day = today.toLocaleDateString("en-US", options);
 
-  switch (currentday) {
-    case 0:
-    kindOday = "Sunday";
-    break;
-  case 1:
-    kindOday = "Monday";
-    break;
-  case 2:
-     kindOday = "Tuesday";
-    break;
-  case 3:
-    kindOday = "Wednesday";
-    break;
-  case 4:
-    kindOday = "Thursday";
-    break;
-  case 5:
-    kindOday = "Friday";
-    break;
-  case 6:
-    kindOday = "Saturday";
-
-  }
-
-  res.render("list", {day: kindOday});
+  res.render("list", {kindOday: day, itemtodo: Items});
 
 });
+
+app.post("/", function(req, res){
+  newItem = req.body.newItem;
+  Items.push(newItem);
+
+  res.redirect("/");
+})
 
 app.listen(3000, function(req, res){
   console.log("Server is running on port 3000");
