@@ -1,28 +1,29 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>TO DO LIST</title>
-    <link rel="stylesheet" href="css/styles.css">
-  </head>
+  <%- include ('header'); -%>
   <body>
 
+    <div class="box" id="heading">
+      <h1><%= kindOday %></h1>
+    </div>
 
-      <h1 style="color: black"><%= kindOday %> To Do List</h1>
+    <div class="box">
 
-      <form class="" action="/" method="post">
-      <label for="newItem">Add new to do</label>
-      <input type="text" name="newItem" placeholder="Input list" value="">
-      <button type="submit" name="submit">Add</button>
-      </form>
-
-      <ul>
         <% for (var i = 0; i< itemtodo.length; i++) { %>
-          <li><%= itemtodo[i] %></li>
-        <% } %>
+          <div class="item">
+            <input type="checkbox" name="" value="">
+            <p><%= itemtodo[i] %></p>
+          </div>
 
-      </ul>
+        <% } %>
+        <form class="item" action="/" method="post">
+        
+        <input type="text" name="newItem" placeholder="New Item" value="" autocomplete="off">
+        <button type="submit" name="submit">+</button>
+        </form>
+    </div>
+
+
 
 
   </body>
 </html>
+<%- include ('footer'); -%>
